@@ -1,6 +1,7 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const taskentryController = require('../controllers/taskentryController');
+import taskentryController from '../controllers/taskentryController'
+
 
 router.get('/', taskentryController.getAllTaskentry);
 router.get('/clientsWithtask', taskentryController.getClientsWithTaskentries);

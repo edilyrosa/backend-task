@@ -1,6 +1,8 @@
-const express = require('express');
+
+import express from "express";
 const router = express.Router();
-const clientController = require('../controllers/clientController');
+import clientController from '../controllers/clientController'
+
 
 router.get('/', clientController.getAllClients);
 router.get('/:id', clientController.getClientById); // Cambiado según tu pregunta

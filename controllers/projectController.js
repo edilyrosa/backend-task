@@ -1,4 +1,4 @@
-const db = require('../db');
+import db from '../db'
 
 exports.getAllProject = async (req, res) => {
   const queryPro = `
@@ -147,84 +147,6 @@ exports.deleteProject = async (req, res) => {
   }
 };
 
-
-// exports.getProjectsAndTasksByClient = async (req, res) => {
-//   const { clientId } = req.params;
-
-//   try {
-//     const query = `
-//       SELECT
-//         c.id AS client_id,
-//         c.name AS client_name,
-//         p.id AS project_id,
-//         p.name AS project_name,
-//         SUM(te.duration) AS total_hours
-//       FROM
-//         public.client c
-//       JOIN
-//         public.project p ON c.id = p.client_id
-//       LEFT JOIN
-//         public.taskentry te ON p.id = te.project_id
-//       WHERE
-//         c.id = $1
-//       GROUP BY
-//         c.id,
-//         c.name,
-//         p.id,
-//         p.name
-//       ORDER BY
-//         c.id,
-//         p.id;
-//     `;
-
-//     const result = await db.query(query, [clientId]);
-//     res.json(result.rows);
-//   } catch (error) {
-//     console.error('Error retrieving project and task information:', error);
-//     res.status(500).json({ error: 'An error occurred while retrieving project and task information.' });
-//   }
-// };
-
-
-
-
-
-// exports.getProjectsAndTotalHoursByClient = async (req, res) => {
-//   const { clientId } = req.params;
-
-//   try {
-//     const query = `
-//       SELECT
-//         c.id AS client_id,
-//         c.name AS client_name,
-//         p.id AS project_id,
-//         p.name AS project_name,
-//         SUM(te.duration) AS total_hours
-//       FROM
-//         public.client c
-//       JOIN
-//         public.project p ON c.id = p.id
-//       LEFT JOIN
-//         public.taskentry te ON p.id = te.project_id
-//       WHERE
-//         c.id = $1
-//       GROUP BY
-//         c.id,
-//         c.name,
-//         p.id,
-//         p.name
-//       ORDER BY
-//         c.id,
-//         p.id;
-//     `;
-
-//     const result = await db.query(query, [clientId]);
-//     res.json(result.rows);
-//   } catch (error) {
-//     console.error('Error retrieving project and total hours information:', error);
-//     res.status(500).json({ error: 'An error occurred while retrieving project and total hours information.' });
-//   }
-// };
 
 exports.getProjectsAndTotalHoursByClient = async (req, res) => {
   const { clientId } = req.params;

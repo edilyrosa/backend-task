@@ -1,5 +1,4 @@
-const db = require('../db');
-
+import db from '../db'
 exports.getAllClients = async (req, res) => {
   try {
     const result = await db.query('SELECT * FROM public.client;');
@@ -9,7 +8,6 @@ exports.getAllClients = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while retrieving clients.' });
   }
 };
-
 
 exports.getClientById = async (req, res) => {
   const clientId = req.params.id;

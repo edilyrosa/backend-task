@@ -4,9 +4,10 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import compression from 'compression';
 
-const clientRoutes = require('./routes/clientRoutes'); 
-const projectRoutes = require('./routes/projectRoutes'); 
-const taskentryRoutes = require('./routes/taskentryRoutes'); 
+import clientRoutes from './routes/clientRoutes.js';
+import clientRoutes from'./routes/clientRoutes'; 
+import projectRoutes from './routes/projectRoutes'; 
+import taskentryRoutes from './routes/taskentryRoutes'; 
 
 const db = require('./db'); // Importar db.js
 
