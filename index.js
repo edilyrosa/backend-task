@@ -12,15 +12,15 @@ const pool = new pg.Pool({
   ssl:true
 }); 
 
+app.get('/', (req, res) => {
+    res.send("¡I'm on the home 🚀");
+  });
 
 app.get('/edily',async  (req, res) => {
   const result = await pool.query('SELECT NOW()')
     return res.json(result.rows[0])
   });
 
-app.get('/', (req, res) => {
-    res.send("¡I'm on the home 🚀");
-  });
 
 app.listen(3000) //will listen on p0rt 3000
 console.log('Server on port 3000');
