@@ -1,6 +1,8 @@
 import express from "express";
-import pg, { Pool } from "pg";
-require('dotenv').config();
+import pg from "pg";
+import {Pool} from "pg";
+import {config} from 'dotenv';
+//require('dotenv').config();
 
 const app = express() //The server
 
