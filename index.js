@@ -20,7 +20,7 @@ const pool = new pg.Pool({
 });
 
 app.get('/', (req, res) => {
-  res.send("¡I'm at home 🚀");
+  res.send("¡I'm at homeeeeeeeeeeeeeeeeeeeee 🚀");
 });
 
 app.get('/edily', async (req, res) => {
