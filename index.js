@@ -14,7 +14,9 @@ app.use(cors());
 
 const pool = new pg.Pool({
   connectionString: process.env.DB_URL,
-  ssl: true
+  ssl: {
+    rejectUnauthorized: false, // Esto permite aceptar certificados autofirmados
+  },
 });
 
 app.get('/', (req, res) => {
@@ -36,7 +38,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
-
-
-const ttvqq = console.log('hola');
-const ttvqq1 = console.log('hola');
