@@ -19,8 +19,8 @@ app.get('/edily',async  (req, res) => {
   });
 
 app.get('/', (req, res) => {
-    res.send("¡I'm con the home 🚀");
+    res.send("¡I'm on the home 🚀");
   });
 
 app.listen(3000) //will listen on p0rt 3000
-console.log('Server on port 3000');
+console.log('Server on port 300099');
