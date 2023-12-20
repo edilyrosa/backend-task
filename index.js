@@ -1,12 +1,12 @@
 import express from "express";
 import pg from "pg";
-import {Pool} from "pg";
+
 import {config} from 'dotenv';
 //require('dotenv').config();
 
 const app = express() //The server
 
-const pool = new Pool({
+const pool = new pg.Pool({
   connectionString: process.env.DB_URL,
   ssl:true
 }); 
