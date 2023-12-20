@@ -1,8 +1,8 @@
 import express from "express";
 import pg from "pg";
-
 import {config} from 'dotenv';
 
+config()
 
 
 const app = express() //The server
@@ -23,4 +23,4 @@ app.get('/', (req, res) => {
   });
 
 app.listen(3000) //will listen on p0rt 3000
-console.log('Server on port 300099');
+console.log('Server on port 3000');
