@@ -55,7 +55,6 @@ CREATE TABLE IF NOT EXISTS public.contractor
 
 //!Dedependent tables.
 
-
 const createProjectTableQuery = `
 CREATE TABLE IF NOT EXISTS public.project
 (
@@ -80,45 +79,40 @@ CREATE TABLE IF NOT EXISTS public.activity
 
 
 
-//TODO
-// const createActivityCategoryTableQuery = `
-// CREATE TABLE IF NOT EXISTS public.activitycategory
-// (
-//     activity_id INTEGER REFERENCES public.activity(id)ON DELETE CASCADE,
-//     category_id INTEGER REFERENCES public.category(id) ON DELETE CASCADE
-// );
-// `;
+//!Dependent combitate tables:
+const createActivityCategoryTableQuery = `
+CREATE TABLE IF NOT EXISTS public.activitycategory
+(
+    activity_id INTEGER REFERENCES public.activity(id)ON DELETE CASCADE,
+    category_id INTEGER REFERENCES public.category(id) ON DELETE CASCADE
+);
+`;
+
+const createProjectProductTableQuery = `
+CREATE TABLE IF NOT EXISTS public.projectproduct
+(
+  project_id INTEGER REFERENCES public.project(id) ON DELETE CASCADE,
+  product_id INTEGER REFERENCES public.product(id) ON DELETE CASCADE
+);
+`;
 
 
-//TODO
-// const createProjectProductTableQuery = `
-// CREATE TABLE IF NOT EXISTS public.projectproduct
-// (
-//   project_id INTEGER REFERENCES public.project(id) ON DELETE CASCADE,
-//   product_id INTEGER REFERENCES public.product(id) ON DELETE CASCADE
-// );
-// `;
-
-
-
-
-//TODO
-// const createTaskEntryTableQuery = `
-//   CREATE TABLE IF NOT EXISTS public.taskentry
-//   (
-//       id serial PRIMARY KEY,
-//       contractor_id INTEGER REFERENCES public.contractor(id) ON DELETE CASCADE,
-//       date DATE,
-//       duration DECIMAL(11, 10),
-//       billable BOOLEAN,
-//       project_id INTEGER REFERENCES public.project(id) ON DELETE CASCADE,
-//       client_id INTEGER REFERENCES public.client(id) ON DELETE CASCADE,
-//       product_id INTEGER REFERENCES public.product(id) ON DELETE CASCADE,
-//       activity_id INTEGER REFERENCES public.activity(id) ON DELETE CASCADE,
-//       category_id INTEGER REFERENCES public.category(id) ON DELETE CASCADE,
-//       description VARCHAR(50)
-//   );
-//   `;
+const createTaskEntryTableQuery = `
+  CREATE TABLE IF NOT EXISTS public.taskentry
+  (
+      id serial PRIMARY KEY,
+      contractor_id INTEGER REFERENCES public.contractor(id) ON DELETE CASCADE,
+      date DATE,
+      duration DECIMAL(11, 10),
+      billable BOOLEAN,
+      project_id INTEGER REFERENCES public.project(id) ON DELETE CASCADE,
+      client_id INTEGER REFERENCES public.client(id) ON DELETE CASCADE,
+      product_id INTEGER REFERENCES public.product(id) ON DELETE CASCADE,
+      activity_id INTEGER REFERENCES public.activity(id) ON DELETE CASCADE,
+      category_id INTEGER REFERENCES public.category(id) ON DELETE CASCADE,
+      description VARCHAR(50)
+  );
+  `;
 
 
 
@@ -155,10 +149,12 @@ const consultaTable = async () => {
 
 //!OJITO: 
 //READY INDEPENDENT: CLIENT, CATEGRY, PRODUCT, CONTRACTOR
-//READY DEPENDENT: PROJECT, 
+//READY DEPENDENT: PROJECT
+//READY DEPENDENT COMBINATES: ACTIVITY-CATEGORY, PROJECT-PRODUCT
+
 const createTable = async () => {
   try {
-    const result = await pool.query(createProjectTableQuery); //!query
+    const result = await pool.query(createActivityCategoryTableQuery); //!query
     console.log('table created successfully');
   } catch (error) {
     console.error('Error creating table:', error);
@@ -167,21 +163,21 @@ const createTable = async () => {
 
 const createTable1 = async () => {
   try {
-    const result = await pool.query(createActivityTableQuery ); //!query
+    const result = await pool.query(createProjectProductTableQuery); //!query
     console.log('table created successfully');
   } catch (error) {
     console.error('Error creating table:', error);
   }
 };
 
-// const createTable2 = async () => {
-//   try {
-//     const result = await pool.query(); //!query
-//     console.log('table created successfully');
-//   } catch (error) {
-//     console.error('Error creating table:', error);
-//   }
-// };
+const createTable2 = async () => {
+  try {
+    const result = await pool.query(createTaskEntryTableQuery); //!query
+    console.log('table created successfully');
+  } catch (error) {
+    console.error('Error creating table:', error);
+  }
+};
 
 
 
@@ -195,7 +191,7 @@ export default {
   consultaTable,
   createTable,
   createTable1,
-  //createTable2,
+  createTable2,
   //createTableAndInsertCategories, 
   //createTableAndInsertProducts,
   //insertContractor,
