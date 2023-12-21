@@ -406,55 +406,47 @@ const insertActivities = async () => {
 
 
 
-// const insertTaskEntryQuery = `
-// INSERT INTO public.taskentry (contractor_id, date, duration, billable, project_id, client_id, product_id, activity_id, category_id, description)
-// VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-// RETURNING *;
-// `;
 
-// const insertTaskEntries = async () => {
-//   try {
-//     // Inserciones de ejemplo en la tabla taskentry
-//     const taskEntriesToInsert = [
-//       { contractor_id: 1, date: '2023-08-10', duration: 3.5, billable: true, project_id: 1, client_id: 4, product_id: 1, activity_id: 1, category_id: 1, description: 'Task 1' },
-//       { contractor_id: 2, date: '2023-08-11', duration: 2.0, billable: false, project_id: 2, client_id: 5, product_id: 2, activity_id: 2, category_id: 2, description: 'Task 2' },
-//       { contractor_id: 3, date: '2023-08-12', duration: 4.25, billable: true, project_id: 3, client_id: 6, product_id: 1, activity_id: 1, category_id: 3, description: 'Task 3' }
-//     ];
+//!INSERT TASKENTRY
+const insertTaskEntryQuery = `
+INSERT INTO public.taskentry (contractor_id, date, duration, billable, project_id, client_id, product_id, activity_id, category_id, description)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+RETURNING *;
+`;
 
-//     for (const taskEntry of taskEntriesToInsert) {
-//       try {
-//         const result = await pool.query(insertTaskEntryQuery, [
-//           taskEntry.contractor_id,
-//           taskEntry.date,
-//           taskEntry.duration,
-//           taskEntry.billable,
-//           taskEntry.project_id,
-//           taskEntry.client_id,
-//           taskEntry.product_id,
-//           taskEntry.activity_id,
-//           taskEntry.category_id,
-//           taskEntry.description
-//         ]);
-//         console.log('Inserted taskentry:', result.rows[0]);
-//       } catch (error) {
-//         console.error('Error inserting taskentry:', error);
-//       }
-//     }
+const insertTaskEntries = async () => {
+  try {
+    // Inserciones de ejemplo en la tabla taskentry
+    const taskEntriesToInsert = [
+      { contractor_id: 1, date: '2023-08-10', duration: 3.5, billable: true, project_id: 1, client_id: 1, product_id: 1, activity_id: 1, category_id: 1, description: 'Task 1' },
+      { contractor_id: 2, date: '2023-08-11', duration: 2.0, billable: false, project_id: 2, client_id: 2, product_id: 2, activity_id: 2, category_id: 2, description: 'Task 2' },
+    ];
 
-//     console.log('Task entries inserted successfully');
-//   } catch (error) {
-//     console.error('Error inserting task entries:', error);
-//   }
-// };
+    for (const taskEntry of taskEntriesToInsert) {
+      try {
+        const result = await pool.query(insertTaskEntryQuery, [
+          taskEntry.contractor_id,
+          taskEntry.date,
+          taskEntry.duration,
+          taskEntry.billable,
+          taskEntry.project_id,
+          taskEntry.client_id,
+          taskEntry.product_id,
+          taskEntry.activity_id,
+          taskEntry.category_id,
+          taskEntry.description
+        ]);
+        console.log('Inserted taskentry:', result.rows[0]);
+      } catch (error) {
+        console.error('Error inserting taskentry:', error);
+      }
+    }
 
-
-
-
-
-
-
-
-
+    console.log('Task entries inserted successfully');
+  } catch (error) {
+    console.error('Error inserting task entries:', error);
+  }
+};
 
 
 
@@ -471,10 +463,10 @@ export default {
 
 
   //insertProjects,
-  insertActivities,
+  //insertActivities,
   //insertActivityCategories,
   //insertProjectProducts,
-  //insertTaskEntries,
+  insertTaskEntries,
   //modifyDurationColumnType,
   //modifyTaskEntryTable, 
   dropTable
@@ -521,12 +513,6 @@ const modifyTaskEntryTable = async () => {
     console.error('Error modifying taskentry table:', error);
   }
 };
-
-
-
-
-
-
 
 
 

@@ -15,7 +15,7 @@ import db from './db.js'; // Importar db.js
 config();// Cargar variables de entorno desde el archivo .env
 
 const app = express(); // El servidor
-const port = 3000;
+const port = 3001;
 
 app.use(compression());// Middleware para habilitar la compresión
 app.use(bodyParser.json());
@@ -152,10 +152,10 @@ app.get('/projectproduct', async (req, res) => {
 
 //! insert of dependient tables.
 
-  db.insertActivities()
-  .catch(error => {
-    console.error('Error insert activities:', error);
-  });
+  // db.insertActivities()
+  // .catch(error => {
+  //   console.error('Error insert activities:', error);
+  // });
 
 
 
@@ -182,10 +182,10 @@ app.get('/projectproduct', async (req, res) => {
 
 
 
-// db.insertTaskEntries()
-//   .catch(error => {
-//     console.error('Error insert task entries:', error);
-//   });
+db.insertTaskEntries()
+  .catch(error => {
+    console.error('Error insert task entries:', error);
+  });
 
 
 
