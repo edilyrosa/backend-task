@@ -343,50 +343,26 @@ export const getTaskentryById = async (req, res) => {
   }
 };
 
-export const createTaskentry = async (req, res) => {
-  const {
-    contractor_id,
-    date,
-    duration,
-    billable,
-    project_id,
-    product_id,
-    activity_id,
-    category_id,
-    client_id,
-    description,
-  } = req.body;
+
+
+
+
+ export const createTaskentry = async (req, res) => {
+  const { contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, description } = req.body;
 
   try {
-    // Inserción de la tarea
     const insertQuery = `
-      INSERT INTO taskentry (contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, client_id, description)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+      INSERT INTO taskentry (contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, description)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING *`;
-
-    const insertValues = [
-      contractor_id,
-      date,
-      duration,
-      billable,
-      project_id,
-      product_id,
-      activity_id,
-      category_id,
-      client_id,
-      description,
-    ];
+      
+    const insertValues = [contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, description];
 
     const insertResult = await db.query(insertQuery, insertValues);
-
-    // Verificar si se insertó correctamente y obtener el ID de la tarea insertada
-    if (!insertResult.rows || insertResult.rows.length === 0) {
-      throw new Error('Error inserting taskentry: No rows returned');
-    }
-
+    
+    // Obtener el ID de la entrada de tarea insertada
     const taskentryId = insertResult.rows[0].id;
 
-    // Selección de detalles de la tarea insertada
     const selectQuery = `
       SELECT
         te.id,
@@ -422,22 +398,20 @@ export const createTaskentry = async (req, res) => {
 
     const selectResult = await db.query(selectQuery, selectValues);
 
-    // Verificar si se seleccionó correctamente
-    if (!selectResult.rows || selectResult.rows.length === 0) {
-      throw new Error('Error retrieving taskentry details');
-    }
-
-    // Enviar detalles completos de la tarea creada al frontend
-    res.status(201).json(selectResult.rows[0]);
+    res.status(201).json(selectResult.rows[0]); // Devolver los detalles completos de la entrada de tarea creada
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: err.message });
+    res.status(500).send('Error inserting taskentry');
   }
 };
 
 
 
-// export const createTaskentry = async (req, res) => {
+
+
+
+
+//async (req, res) => {
 //     const { contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, client_id, description } = req.body;
   
 //     try {
@@ -495,65 +469,6 @@ export const createTaskentry = async (req, res) => {
 //     }
 //   };
 
-
-
-
-// = async (req, res) => {
-//   const { contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, description } = req.body;
-
-//   try {
-//     const insertQuery = `
-//       INSERT INTO taskentry (contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, description)
-//       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-//       RETURNING *`;
-
-//     const insertValues = [contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, description];
-
-//     const insertResult = await db.query(insertQuery, insertValues);
-    
-//     const taskentryId = insertResult.rows[0].id;
-
-//     const selectQuery = `
-//       SELECT
-//         te.id,
-//         c.fullname AS contractor_name,
-//         te.date,
-//         te.duration,
-//         te.billable,
-//         p.name AS project_name,
-//         cl.id AS client_id,
-//         cl.name AS client_name,
-//         pr.description AS product_description,
-//         a.description AS activity_description,
-//         cat.description AS category_description,
-//         te.description
-//       FROM
-//         taskentry te
-//       JOIN
-//         contractor c ON te.contractor_id = c.id
-//       JOIN
-//         project p ON te.project_id = p.id
-//       JOIN
-//         client cl ON p.client_id = cl.id
-//       JOIN
-//         product pr ON te.product_id = pr.id
-//       JOIN
-//         activity a ON te.activity_id = a.id
-//       JOIN
-//         category cat ON te.category_id = cat.id
-//       WHERE te.id = $1;
-//     `;
-
-//     const selectValues = [taskentryId];
-
-//     const selectResult = await db.query(selectQuery, selectValues);
-
-//     res.status(201).json(selectResult.rows[0]);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send('Error inserting taskentry');
-//   }
-// };
 
 export const updateTaskentry = async (req, res) => {
   const taskentryId = req.params.id;
