@@ -193,6 +193,8 @@ app.get('/projectproduct', async (req, res) => {
 //   });
 
 
+db.modifyDurationColumnType() 
+db.modifyTaskEntryTable()
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

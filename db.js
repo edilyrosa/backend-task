@@ -451,30 +451,6 @@ const insertTaskEntries = async () => {
 
 
 
-
-
-export default {
-  query: (text, params) => pool.query(text, params),
-  consultaTable,
-  //createTable,
-  //createTableAndInsertCategories, 
-  //createTableAndInsertProducts,
-  //insertContractor,
-
-
-  //insertProjects,
-  //insertActivities,
-  //insertActivityCategories,
-  //insertProjectProducts,
-  //insertTaskEntries,
-  //modifyDurationColumnType,
-  //modifyTaskEntryTable, 
-  dropTable
-};
-
-
-/*
-
 const modifyDurationColumnType = async () => {
   const modifyQuery = `
     ALTER TABLE public.taskentry
@@ -516,5 +492,23 @@ const modifyTaskEntryTable = async () => {
 
 
 
+export default {
+  query: (text, params) => pool.query(text, params),
+  consultaTable,
+  //createTable,
+  //createTableAndInsertCategories, 
+  //createTableAndInsertProducts,
+  //insertContractor,
 
-*/
+
+  //insertProjects,
+  //insertActivities,
+  //insertActivityCategories,
+  //insertProjectProducts,
+  //insertTaskEntries,
+  modifyDurationColumnType,
+  modifyTaskEntryTable, 
+  dropTable
+};
+
+
