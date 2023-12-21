@@ -163,7 +163,6 @@ const consultaTable = async () => {
 
 
 
-
 //!INSERT DATA TO INDEPENDENT TABLE
 // const insertCategoryQuery = `
 // INSERT INTO public.category (description, active)
@@ -261,7 +260,44 @@ const consultaTable = async () => {
 // };
 
 
+
+//!INSERT INTO CLIENT & PROJECT TABLES BY UI
+
 //!INSERT TO DEPENDENT TABLES
+
+const insertProjectProducts = async () => {
+  try {
+    // Inserciones de ejemplo en la tabla projectproduct
+    const projectProductsToInsert = [
+      { project_id: 1, product_id: 1 },
+      { project_id: 2, product_id: 2 }
+    ];
+
+    for (const projectProduct of projectProductsToInsert) {
+      try {
+        const result = await pool.query(insertProjectProductQuery, [
+          projectProduct.project_id,
+          projectProduct.product_id
+        ]);
+        console.log('Inserted projectproduct:', result.rows[0]);
+      } catch (error) {
+        console.error('Error inserting projectproduct:', error);
+      }
+    }
+
+    console.log('Project products inserted successfully');
+  } catch (error) {
+    console.error('Error inserting project products:', error);
+  }
+};
+
+
+
+
+
+
+
+
 // const insertProjectQuery = `
 // INSERT INTO public.projectsuper (name, client_id, description, active)
 // VALUES ($1, $2, $3, $4)
@@ -366,31 +402,7 @@ const consultaTable = async () => {
 // RETURNING *;
 // `;
 
-// const insertProjectProducts = async () => {
-//   try {
-//     // Inserciones de ejemplo en la tabla projectproduct
-//     const projectProductsToInsert = [
-//       { project_id: 4, product_id: 1 },
-//       { project_id: 4, product_id: 4 }
-//     ];
 
-//     for (const projectProduct of projectProductsToInsert) {
-//       try {
-//         const result = await pool.query(insertProjectProductQuery, [
-//           projectProduct.project_id,
-//           projectProduct.product_id
-//         ]);
-//         console.log('Inserted projectproduct:', result.rows[0]);
-//       } catch (error) {
-//         console.error('Error inserting projectproduct:', error);
-//       }
-//     }
-
-//     console.log('Project products inserted successfully');
-//   } catch (error) {
-//     console.error('Error inserting project products:', error);
-//   }
-// };
 
 
 // const insertTaskEntryQuery = `
@@ -460,7 +472,7 @@ export default {
   //insertProjects,
   //insertActivities,
   //insertActivityCategories,
-  //insertProjectProducts,
+  insertProjectProducts,
   //insertTaskEntries,
   //modifyDurationColumnType,
   //modifyTaskEntryTable, 

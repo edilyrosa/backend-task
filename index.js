@@ -148,7 +148,14 @@ app.get('/projectproduct', async (req, res) => {
 //   });
 
 
+//!insert of client & project by UI
 
+//! insert of dependient tables.
+
+db.insertProjectProducts()
+  .catch(error => {
+    console.error('Error insert project products:', error);
+  });
 
 
 
@@ -175,10 +182,7 @@ app.get('/projectproduct', async (req, res) => {
 //     console.error('Error insert activity categories:', error);
 //   });
 
-// db.insertProjectProducts()
-//   .catch(error => {
-//     console.error('Error insert project products:', error);
-//   });
+
 
 // db.insertTaskEntries()
 //   .catch(error => {
