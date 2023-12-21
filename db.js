@@ -265,6 +265,41 @@ const consultaTable = async () => {
 
 //!INSERT TO DEPENDENT TABLES
 
+
+const insertActivities = async () => {
+  try {
+    // Inserciones de ejemplo en la tabla activity
+    const activitiesToInsert = [
+      { description: 'Activity 7', project_id: 7, active: true },
+      { description: 'Activity 14', project_id: 14, active: true }
+    ];
+
+    for (const activity of activitiesToInsert) {
+      try {
+        const result = await pool.query(insertActivityQuery, [
+          activity.description,
+          activity.project_id,
+          activity.active
+        ]);
+        console.log('Inserted activity:', result.rows[0]);
+      } catch (error) {
+        console.error('Error inserting activity:', error);
+      }
+    }
+
+    console.log('Activities inserted successfully');
+  } catch (error) {
+    console.error('Error inserting activities:', error);
+  }
+};
+
+const insertActivityCategoryQuery = `
+INSERT INTO public.activitycategory (activity_id, category_id)
+VALUES ($1, $2)
+RETURNING *;
+`;
+
+
 const insertProjectProducts = async () => {
   try {
     // Inserciones de ejemplo en la tabla projectproduct
@@ -334,39 +369,6 @@ const insertProjectProducts = async () => {
 // const insertActivityQuery = `
 // INSERT INTO public.activity (description, project_id, active)
 // VALUES ($1, $2, $3)
-// RETURNING *;
-// `;
-
-// const insertActivities = async () => {
-//   try {
-//     // Inserciones de ejemplo en la tabla activity
-//     const activitiesToInsert = [
-//       { description: 'Activity 7', project_id: 7, active: true },
-//       { description: 'Activity 14', project_id: 14, active: true }
-//     ];
-
-//     for (const activity of activitiesToInsert) {
-//       try {
-//         const result = await pool.query(insertActivityQuery, [
-//           activity.description,
-//           activity.project_id,
-//           activity.active
-//         ]);
-//         console.log('Inserted activity:', result.rows[0]);
-//       } catch (error) {
-//         console.error('Error inserting activity:', error);
-//       }
-//     }
-
-//     console.log('Activities inserted successfully');
-//   } catch (error) {
-//     console.error('Error inserting activities:', error);
-//   }
-// };
-
-// const insertActivityCategoryQuery = `
-// INSERT INTO public.activitycategory (activity_id, category_id)
-// VALUES ($1, $2)
 // RETURNING *;
 // `;
 
@@ -470,7 +472,7 @@ export default {
 
 
   //insertProjects,
-  //insertActivities,
+  insertActivities,
   //insertActivityCategories,
   insertProjectProducts,
   //insertTaskEntries,

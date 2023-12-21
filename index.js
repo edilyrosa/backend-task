@@ -157,6 +157,11 @@ db.insertProjectProducts()
     console.error('Error insert project products:', error);
   });
 
+  db.insertActivities()
+  .catch(error => {
+    console.error('Error insert activities:', error);
+  });
+
 
 
 //todo
@@ -170,10 +175,6 @@ db.insertProjectProducts()
 //     console.error('Error insert projects:', error); 
 //   });
 
-// db.insertActivities()
-//   .catch(error => {
-//     console.error('Error insert activities:', error);
-//   });
 
 
 
@@ -188,9 +189,6 @@ db.insertProjectProducts()
 //   .catch(error => {
 //     console.error('Error insert task entries:', error);
 //   });
-
-
-
 
 
 
