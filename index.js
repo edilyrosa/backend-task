@@ -127,26 +127,32 @@ app.get('/projectproduct', async (req, res) => {
 
 
 
-//!  INSERTS
+//!  INSERTS, se estas replicando al doble
 
 //! insert of independient tables.
-db.createTableAndInsertCategories()
-  .catch(error => {
-    console.error('Error insert activities:', error);
-  });
+// db.createTableAndInsertCategories()
+//   .catch(error => {
+//     console.error('Error insert activities:', error);
+//   });
 
 
-  db.createTableAndInsertProducts()
-  .catch(error => {
-    console.error('Error insert products:', error);
-  });
+//   db.createTableAndInsertProducts()
+//   .catch(error => {
+//     console.error('Error insert products:', error);
+//   });
   
 
-  db.insertContractor()
-  .catch(error => {
-    console.error('Error insert products:', error);
-  });
+//   db.insertContractor()
+//   .catch(error => {
+//     console.error('Error insert products:', error);
+//   });
 
+
+
+
+
+
+//todo
 // db.insertRgisters()
 // .catch(error => {
 // console.error('Error insert table:', error); 

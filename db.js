@@ -151,113 +151,114 @@ const consultaTable = async () => {
 //READY INDEPENDENT: CLIENT, CATEGRY, PRODUCT, CONTRACTOR
 //READY DEPENDENT: PROJECT, ACTIVITY
 //READY DEPENDENT COMBINATES: ACTIVITY-CATEGORY, PROJECT-PRODUCT
-const createTable = async () => {
-  try {
-    const result = await pool.query(createActivityCategoryTableQuery); //!query
-    console.log('table created successfully');
-  } catch (error) {
-    console.error('Error creating table:', error);
-  }
-};
+
+// const createTable = async () => {
+//   try {
+//     const result = await pool.query(OJOOOOOOOOOOOOO); //!query
+//     console.log('table created successfully');
+//   } catch (error) {
+//     console.error('Error creating table:', error);
+//   }
+// };
 
 
 
 
 //!INSERT DATA TO INDEPENDENT TABLE
-const insertCategoryQuery = `
-INSERT INTO public.category (description, active)
-VALUES ($1, $2)
-RETURNING *;
-`;
-const createTableAndInsertCategories = async () => {
-  try {
-    // Crear la tabla category si no existe
-    //await pool.query(createCategoryTableQuery);
+// const insertCategoryQuery = `
+// INSERT INTO public.category (description, active)
+// VALUES ($1, $2)
+// RETURNING *;
+// `;
+// const createTableAndInsertCategories = async () => {
+//   try {
+//     // Crear la tabla category si no existe
+//     //!await pool.query(createCategoryTableQuery);
 
-    //! Inserciones de ejemplo en la tabla category
-    const categoriesToInsert = [
-      { description: 'Category 1', active: true },
-      { description: 'Category 2', active: false },
-      { description: 'Category 3', active: true }
-    ];
+//     //! Inserciones de ejemplo en la tabla category
+//     const categoriesToInsert = [
+//       { description: 'Category 1', active: true },
+//       { description: 'Category 2', active: false },
+//       { description: 'Category 3', active: true }
+//     ];
 
-    for (const category of categoriesToInsert) {
-      const result = await pool.query(insertCategoryQuery, [category.description, category.active]);
-      console.log('Inserted category:', result.rows[0]);
-    }
+//     for (const category of categoriesToInsert) {
+//       const result = await pool.query(insertCategoryQuery, [category.description, category.active]);
+//       console.log('Inserted category:', result.rows[0]);
+//     }
 
-    console.log('Categories inserted successfully');
-  } catch (error) {
-    console.error('Error creating table or inserting categories:', error);
-  }
-};
+//     console.log('Categories inserted successfully');
+//   } catch (error) {
+//     console.error('Error creating table or inserting categories:', error);
+//   }
+// };
 
-const insertProductQuery = `
-INSERT INTO public.product (description, active)
-VALUES ($1, $2)
-RETURNING *;
-`;
-const createTableAndInsertProducts = async () => {
-  try {
-    // Crear la tabla category si no existe
-    //await pool.query(createCategoryTableQuery);
+// const insertProductQuery = `
+// INSERT INTO public.product (description, active)
+// VALUES ($1, $2)
+// RETURNING *;
+// `;
+// const createTableAndInsertProducts = async () => {
+//   try {
+//     // Crear la tabla category si no existe
+//     //!await pool.query(createCategoryTableQuery);
 
-    //! Inserciones
-    const productToInsert = [
-      { description: 'PRO 1', active: true },
-      { description: 'PRO 2', active: false },
-      { description: 'PRO 3', active: true }
-    ];
+//     //! Inserciones
+//     const productToInsert = [
+//       { description: 'PRO 1', active: true },
+//       { description: 'PRO 2', active: false },
+//       { description: 'PRO 3', active: true }
+//     ];
 
-    for (const product of productToInsert) {
-      const result = await pool.query(insertProductQuery, [product.description, product.active]);
-      console.log('Inserted product:', result.rows[0]);
-    }
+//     for (const product of productToInsert) {
+//       const result = await pool.query(insertProductQuery, [product.description, product.active]);
+//       console.log('Inserted product:', result.rows[0]);
+//     }
 
-    console.log('inserted successfully');
-  } catch (error) {
-    console.error('Error creating table or inserting:', error);
-  }
-};
+//     console.log('inserted successfully');
+//   } catch (error) {
+//     console.error('Error creating table or inserting:', error);
+//   }
+// };
 
 
-const insertContractorQuery = `
-INSERT INTO public.contractor (fullname, gender, birthyear, country_residence, active)
-VALUES ($1, $2, $3, $4, $5)
-RETURNING *;
-`;
-const insertContractor = async () => {
-  try {
-    // Crear la tabla contractor si no existe
-    await pool.query(createContractorTableQuery);
+// const insertContractorQuery = `
+// INSERT INTO public.contractor (fullname, gender, birthyear, country_residence, active)
+// VALUES ($1, $2, $3, $4, $5)
+// RETURNING *;
+// `;
+// const insertContractor = async () => {
+//   try {
+//     // Crear la tabla contractor si no existe
+//     //!await pool.query(createContractorTableQuery);
 
-    // Inserciones de ejemplo en la tabla contractor
-    const contractorsToInsert = [
-      { fullname: 'Contractor 1', gender: 'Male', birthyear: 1990, country_residence: 'USA', active: true },
-      { fullname: 'Contractor 2', gender: 'Female', birthyear: 1985, country_residence: 'Canada', active: true },
-      { fullname: 'Contractor 3', gender: 'Male', birthyear: 1988, country_residence: 'UK', active: false }
-    ];
+//     // Inserciones de ejemplo en la tabla contractor
+//     const contractorsToInsert = [
+//       { fullname: 'Contractor 1', gender: 'Male', birthyear: 1990, country_residence: 'USA', active: true },
+//       { fullname: 'Contractor 2', gender: 'Female', birthyear: 1985, country_residence: 'Canada', active: true },
+//       { fullname: 'Contractor 3', gender: 'Male', birthyear: 1988, country_residence: 'UK', active: false }
+//     ];
 
-    for (const contractor of contractorsToInsert) {
-      try {
-        const result = await pool.query(insertContractorQuery, [
-          contractor.fullname,
-          contractor.gender,
-          contractor.birthyear,
-          contractor.country_residence,
-          contractor.active
-        ]);
-        console.log('Inserted contractor:', result.rows[0]);
-      } catch (error) {
-        console.error('Error inserting contractor:', error);
-      }
-    }  
+//     for (const contractor of contractorsToInsert) {
+//       try {
+//         const result = await pool.query(insertContractorQuery, [
+//           contractor.fullname,
+//           contractor.gender,
+//           contractor.birthyear,
+//           contractor.country_residence,
+//           contractor.active
+//         ]);
+//         console.log('Inserted contractor:', result.rows[0]);
+//       } catch (error) {
+//         console.error('Error inserting contractor:', error);
+//       }
+//     }  
 
-    console.log('Contractors inserted successfully');
-  } catch (error) {
-    console.error('Error creating table or inserting contractors:', error);
-  }
-};
+//     console.log('Contractors inserted successfully');
+//   } catch (error) {
+//     console.error('Error creating table or inserting contractors:', error);
+//   }
+// };
 
 
 //!INSERT TO DEPENDENT TABLES
@@ -450,10 +451,12 @@ const insertContractor = async () => {
 export default {
   query: (text, params) => pool.query(text, params),
   consultaTable,
-  createTable,
-  createTableAndInsertCategories, 
-  createTableAndInsertProducts,
-  insertContractor,
+  //createTable,
+  //createTableAndInsertCategories, 
+  //createTableAndInsertProducts,
+  //insertContractor,
+
+
   //insertProjects,
   //insertActivities,
   //insertActivityCategories,
