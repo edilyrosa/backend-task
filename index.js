@@ -74,6 +74,8 @@ app.get('/category', async (req, res) => {
     }
   });
   
+
+//!rutas dependientes.  
 //! Ruta de activity depende de project
 app.get('/activity', async (req, res) => {
     try {
@@ -86,7 +88,10 @@ app.get('/activity', async (req, res) => {
   });
   
 
-//! Ruta de projectproduct depende de varias
+
+
+
+//! Ruta de projectproduct depende de 2
 app.get('/projectproduct', async (req, res) => {
     try {
       const result = await db.query('SELECT * FROM public.projectproduct');
@@ -97,7 +102,7 @@ app.get('/projectproduct', async (req, res) => {
     }
   });
   
-  //! Ruta de activitycategory depende de varias
+  //! Ruta de activitycategory depende de 2
   app.get('/activitycategory', async (req, res) => {
     try {
       const result = await db.query('SELECT * FROM public.activitycategory');
@@ -182,10 +187,10 @@ app.get('/projectproduct', async (req, res) => {
 
 
 
-db.insertTaskEntries()
-  .catch(error => {
-    console.error('Error insert task entries:', error);
-  });
+// db.insertTaskEntries()
+//   .catch(error => {
+//     console.error('Error insert task entries:', error);
+//   });
 
 
 

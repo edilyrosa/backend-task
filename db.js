@@ -466,7 +466,7 @@ export default {
   //insertActivities,
   //insertActivityCategories,
   //insertProjectProducts,
-  insertTaskEntries,
+  //insertTaskEntries,
   //modifyDurationColumnType,
   //modifyTaskEntryTable, 
   dropTable
