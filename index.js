@@ -49,6 +49,14 @@ db.createTable()
   .catch(error => {
     console.error('Error creating table:', error);
   });
+db.createTable1() 
+  .catch(error => {
+    console.error('Error creating table:', error);
+  });
+db.createTable2() 
+  .catch(error => {
+    console.error('Error creating table:', error);
+  });
 
 
  //! Usar las rutas de clientes

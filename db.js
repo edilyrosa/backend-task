@@ -145,10 +145,28 @@ const consultaTable = async () => {
 };
 
 
-//!OJITO
+//!OJITO: READY: CLIENT, CATEGRY, PRODUCT, CONTRACTOR
 const createTable = async () => {
   try {
-    const result = await pool.query(createClientTableQuery); //!query
+    const result = await pool.query(createCategoryTableQuery); //!query
+    console.log('table created successfully');
+  } catch (error) {
+    console.error('Error creating table:', error);
+  }
+};
+
+const createTable1 = async () => {
+  try {
+    const result = await pool.query(createContractorTableQuery ); //!query
+    console.log('table created successfully');
+  } catch (error) {
+    console.error('Error creating table:', error);
+  }
+};
+
+const createTable2 = async () => {
+  try {
+    const result = await pool.query(createProductTableQuery); //!query
     console.log('table created successfully');
   } catch (error) {
     console.error('Error creating table:', error);
@@ -162,11 +180,12 @@ const createTable = async () => {
 
 
 
-
 export default {
   query: (text, params) => pool.query(text, params),
   consultaTable,
   createTable,
+  createTable1,
+  createTable2,
   //createTableAndInsertCategories, 
   //createTableAndInsertProducts,
   //insertContractor,
