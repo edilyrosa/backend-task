@@ -27,18 +27,10 @@ app.get('/', (req, res) => {
 
 
 //! Crear la tabla
-db.createTable() 
-  .catch(error => {
-    console.error('Error creating table:', error);
-  });
-db.createTable1() 
-  .catch(error => {
-    console.error('Error creating table:', error);
-  });
-db.createTable2() 
-  .catch(error => {
-    console.error('Error creating table:', error);
-  });
+// db.createTable() 
+//   .catch(error => {
+//     console.error('Error creating table:', error);
+//   });
 
 
  //! Usar las rutas de clientes
@@ -133,6 +125,68 @@ app.get('/projectproduct', async (req, res) => {
 
 
 
+
+
+//!  INSERTS
+
+//! insert of independient tables.
+db.createTableAndInsertCategories()
+  .catch(error => {
+    console.error('Error insert activities:', error);
+  });
+
+
+  db.createTableAndInsertProducts()
+  .catch(error => {
+    console.error('Error insert products:', error);
+  });
+  
+
+  db.insertContractor()
+  .catch(error => {
+    console.error('Error insert products:', error);
+  });
+
+// db.insertRgisters()
+// .catch(error => {
+// console.error('Error insert table:', error); 
+// });
+
+// db.insertProjects()
+//   .catch(error => {
+//     console.error('Error insert projects:', error); 
+//   });
+
+// db.insertActivities()
+//   .catch(error => {
+//     console.error('Error insert activities:', error);
+//   });
+
+
+
+// db.insertActivityCategories()
+//   .catch(error => {
+//     console.error('Error insert activity categories:', error);
+//   });
+
+// db.insertProjectProducts()
+//   .catch(error => {
+//     console.error('Error insert project products:', error);
+//   });
+
+// db.insertTaskEntries()
+//   .catch(error => {
+//     console.error('Error insert task entries:', error);
+//   });
+
+
+
+
+
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });
+
+
+  
