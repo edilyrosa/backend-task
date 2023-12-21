@@ -163,7 +163,7 @@ const createTable = async () => {
 
 
 
-module.exports = {
+export default {
   query: (text, params) => pool.query(text, params),
   consultaTable,
   createTable,

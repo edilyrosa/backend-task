@@ -4,12 +4,13 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import compression from 'compression';
 
-import clientRoutes from './routes/clientRoutes.js';
-import clientRoutes from'./routes/clientRoutes'; 
-import projectRoutes from './routes/projectRoutes'; 
-import taskentryRoutes from './routes/taskentryRoutes'; 
+//import clientRoutes from'../routes/clientRoutes.js'; 
+import clientRoutes from'./routes/clientRoutes.js'
+import projectRoutes from './routes/projectRoutes.js'; 
+import taskentryRoutes from './routes/taskentryRoutes.js'; 
 
-const db = require('./db'); // Importar db.js
+import db from './db.js'; // Importar db.js
+
 
 config();// Cargar variables de entorno desde el archivo .env
 
