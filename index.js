@@ -61,8 +61,49 @@ db.createTable2()
 
  //! Usar las rutas de clientes
 app.use('/client', clientRoutes);
+//TODO: ME FALTAN ESTAS 2
 app.use('/project', projectRoutes);
 app.use('/taskentry', taskentryRoutes);
+
+
+
+//! Rutas Independientes de tablas sin CRUD
+
+//! Ruta de category
+app.get('/category', async (req, res) => {
+    try {
+      const result = await db.query('SELECT * FROM public.category');
+      return res.json(result.rows);
+    } catch (error) {
+      console.error('Error retrieving categories:', error);
+      return res.status(500).json({ error: 'An error occurred while retrieving categories.' });
+    }
+  });
+  
+  //! Ruta de product
+  app.get('/product', async (req, res) => {
+    try {
+      const result = await db.query('SELECT * FROM public.product');
+      return res.json(result.rows);
+    } catch (error) {
+      console.error('Error retrieving:', error);
+      return res.status(500).json({ error: 'An error occurred while retrieving.' });
+    }
+  });
+  
+  //! Ruta de contractor
+  app.get('/contractor', async (req, res) => {
+    try {
+      const result = await db.query('SELECT * FROM public.contractor');
+      return res.json(result.rows);
+    } catch (error) {
+      console.error('Error retrieving:', error);
+      return res.status(500).json({ error: 'An error occurred while retrieving.' });
+    }
+  });
+
+
+
 
 
 
