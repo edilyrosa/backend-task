@@ -152,15 +152,12 @@ app.get('/projectproduct', async (req, res) => {
 
 //! insert of dependient tables.
 
-db.insertProjectProducts()
-  .catch(error => {
-    console.error('Error insert project products:', error);
-  });
-
   db.insertActivities()
   .catch(error => {
     console.error('Error insert activities:', error);
   });
+
+
 
 
 

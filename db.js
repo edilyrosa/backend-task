@@ -264,14 +264,18 @@ const consultaTable = async () => {
 //!INSERT INTO CLIENT & PROJECT TABLES BY UI
 
 //!INSERT TO DEPENDENT TABLES
-
+const insertActivityQuery = `
+INSERT INTO public.activity (description, project_id, active)
+VALUES ($1, $2, $3)
+RETURNING *;
+`;
 
 const insertActivities = async () => {
   try {
     // Inserciones de ejemplo en la tabla activity
     const activitiesToInsert = [
-      { description: 'Activity 7', project_id: 7, active: true },
-      { description: 'Activity 14', project_id: 14, active: true }
+      { description: 'Activity 1', project_id: 1, active: true },
+      { description: 'Activity 2', project_id: 2, active: true }
     ];
 
     for (const activity of activitiesToInsert) {
@@ -293,41 +297,40 @@ const insertActivities = async () => {
   }
 };
 
-const insertActivityCategoryQuery = `
-INSERT INTO public.activitycategory (activity_id, category_id)
-VALUES ($1, $2)
-RETURNING *;
-`;
-
-
-const insertProjectProducts = async () => {
-  try {
-    // Inserciones de ejemplo en la tabla projectproduct
-    const projectProductsToInsert = [
-      { project_id: 1, product_id: 1 },
-      { project_id: 2, product_id: 2 }
-    ];
-
-    for (const projectProduct of projectProductsToInsert) {
-      try {
-        const result = await pool.query(insertProjectProductQuery, [
-          projectProduct.project_id,
-          projectProduct.product_id
-        ]);
-        console.log('Inserted projectproduct:', result.rows[0]);
-      } catch (error) {
-        console.error('Error inserting projectproduct:', error);
-      }
-    }
-
-    console.log('Project products inserted successfully');
-  } catch (error) {
-    console.error('Error inserting project products:', error);
-  }
-};
 
 
 
+
+// const insertProjectProductQuery = `
+// INSERT INTO public.projectproduct (project_id, product_id)
+// VALUES ($1, $2)
+// RETURNING *;
+// `;
+// const insertProjectProducts = async () => {
+//   try {
+//     // Inserciones de ejemplo en la tabla projectproduct
+//     const projectProductsToInsert = [
+//       { project_id: 1, product_id: 1 },
+//       { project_id: 2, product_id: 2 }
+//     ];
+
+//     for (const projectProduct of projectProductsToInsert) {
+//       try {
+//         const result = await pool.query(insertProjectProductQuery, [
+//           projectProduct.project_id,
+//           projectProduct.product_id
+//         ]);
+//         console.log('Inserted projectproduct:', result.rows[0]);
+//       } catch (error) {
+//         console.error('Error inserting projectproduct:', error);
+//       }
+//     }
+
+//     console.log('Project products inserted successfully');
+//   } catch (error) {
+//     console.error('Error inserting project products:', error);
+//   }
+// };
 
 
 
@@ -366,11 +369,14 @@ const insertProjectProducts = async () => {
 //   }
 // };
 
-// const insertActivityQuery = `
-// INSERT INTO public.activity (description, project_id, active)
-// VALUES ($1, $2, $3)
+
+//const insertActivityCategoryQuery = `
+// INSERT INTO public.activitycategory (activity_id, category_id)
+// VALUES ($1, $2)
 // RETURNING *;
 // `;
+
+
 
 // const insertActivityCategories = async () => {
 //   try {
@@ -397,13 +403,6 @@ const insertProjectProducts = async () => {
 //     console.error('Error inserting activity categories:', error);
 //   }
 // };
-
-// const insertProjectProductQuery = `
-// INSERT INTO public.projectproduct (project_id, product_id)
-// VALUES ($1, $2)
-// RETURNING *;
-// `;
-
 
 
 
@@ -474,7 +473,7 @@ export default {
   //insertProjects,
   insertActivities,
   //insertActivityCategories,
-  insertProjectProducts,
+  //insertProjectProducts,
   //insertTaskEntries,
   //modifyDurationColumnType,
   //modifyTaskEntryTable, 
