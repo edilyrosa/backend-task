@@ -10,7 +10,7 @@ const pool = new pg.Pool({
   },
 });
 
-
+//!Independent tables.
 const createClientTableQuery = `
 CREATE TABLE IF NOT EXISTS client (
   id SERIAL PRIMARY KEY,
@@ -22,28 +22,6 @@ CREATE TABLE IF NOT EXISTS client (
   active BOOLEAN
 );
 `;
-//TODO
-// const createProjectTableQuery = `
-// CREATE TABLE IF NOT EXISTS public.project
-// (
-//     id serial PRIMARY KEY,
-//     name character varying(50),
-//     client_id INTEGER REFERENCES public.client(id) ON DELETE CASCADE,
-//     description character varying(50),
-//     active boolean
-// );
-// `;
-
-//TODO
-// const createActivityTableQuery = `
-// CREATE TABLE IF NOT EXISTS public.activity
-// (
-//     id serial PRIMARY KEY,
-//     description character varying(50),
-//     project_id INTEGER REFERENCES public.project(id) ON DELETE CASCADE,
-//     active boolean
-// );
-// `;
 
 const createCategoryTableQuery = `
 CREATE TABLE IF NOT EXISTS public.category
@@ -62,6 +40,44 @@ CREATE TABLE IF NOT EXISTS public.product
     active boolean
 );
 `;
+
+const createContractorTableQuery = `
+CREATE TABLE IF NOT EXISTS public.contractor
+(
+    id serial PRIMARY KEY,
+    fullname VARCHAR(40),
+    gender VARCHAR(10),
+    birthyear INTEGER,
+    country_residence VARCHAR(40),
+    active BOOLEAN
+);
+`;
+
+//!Dedependent tables.
+
+
+const createProjectTableQuery = `
+CREATE TABLE IF NOT EXISTS public.project
+(
+    id serial PRIMARY KEY,
+    name character varying(50),
+    client_id INTEGER REFERENCES public.client(id) ON DELETE CASCADE,
+    description character varying(50),
+    active boolean
+);
+`;
+
+
+const createActivityTableQuery = `
+CREATE TABLE IF NOT EXISTS public.activity
+(
+    id serial PRIMARY KEY,
+    description character varying(50),
+    project_id INTEGER REFERENCES public.project(id) ON DELETE CASCADE,
+    active boolean
+);
+`;
+
 
 
 //TODO
@@ -84,17 +100,7 @@ CREATE TABLE IF NOT EXISTS public.product
 // `;
 
 
-const createContractorTableQuery = `
-CREATE TABLE IF NOT EXISTS public.contractor
-(
-    id serial PRIMARY KEY,
-    fullname VARCHAR(40),
-    gender VARCHAR(10),
-    birthyear INTEGER,
-    country_residence VARCHAR(40),
-    active BOOLEAN
-);
-`;
+
 
 //TODO
 // const createTaskEntryTableQuery = `
@@ -113,6 +119,8 @@ CREATE TABLE IF NOT EXISTS public.contractor
 //       description VARCHAR(50)
 //   );
 //   `;
+
+
 
 const listTablesQuery = `
 SELECT table_name
@@ -145,10 +153,12 @@ const consultaTable = async () => {
 };
 
 
-//!OJITO: READY: CLIENT, CATEGRY, PRODUCT, CONTRACTOR
+//!OJITO: 
+//READY INDEPENDENT: CLIENT, CATEGRY, PRODUCT, CONTRACTOR
+//READY DEPENDENT: PROJECT, 
 const createTable = async () => {
   try {
-    const result = await pool.query(createCategoryTableQuery); //!query
+    const result = await pool.query(createProjectTableQuery); //!query
     console.log('table created successfully');
   } catch (error) {
     console.error('Error creating table:', error);
@@ -157,21 +167,21 @@ const createTable = async () => {
 
 const createTable1 = async () => {
   try {
-    const result = await pool.query(createContractorTableQuery ); //!query
+    const result = await pool.query(createActivityTableQuery ); //!query
     console.log('table created successfully');
   } catch (error) {
     console.error('Error creating table:', error);
   }
 };
 
-const createTable2 = async () => {
-  try {
-    const result = await pool.query(createProductTableQuery); //!query
-    console.log('table created successfully');
-  } catch (error) {
-    console.error('Error creating table:', error);
-  }
-};
+// const createTable2 = async () => {
+//   try {
+//     const result = await pool.query(); //!query
+//     console.log('table created successfully');
+//   } catch (error) {
+//     console.error('Error creating table:', error);
+//   }
+// };
 
 
 
@@ -185,7 +195,7 @@ export default {
   consultaTable,
   createTable,
   createTable1,
-  createTable2,
+  //createTable2,
   //createTableAndInsertCategories, 
   //createTableAndInsertProducts,
   //insertContractor,

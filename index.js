@@ -25,24 +25,6 @@ app.get('/', (req, res) => {
   res.send("¡I'm at home 🚀");
 });
 
-//!ESTO ESTA EN db.js
-// const pool = new pg.Pool({
-//   connectionString: process.env.DB_URL,
-//   ssl: {
-//     rejectUnauthorized: false, // Esto permite aceptar certificados autofirmados
-//   },
-// });
-
-// app.get('/edily', async (req, res) => {
-//   try {
-//     const result = await pool.query('SELECT NOW()');
-//     return res.json(result.rows[0]);
-//   } catch (error) {
-//     console.error('Error en la consulta a la base de datos:', error);
-//     return res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
-
 
 //! Crear la tabla
 db.createTable() 
@@ -53,10 +35,10 @@ db.createTable1()
   .catch(error => {
     console.error('Error creating table:', error);
   });
-db.createTable2() 
-  .catch(error => {
-    console.error('Error creating table:', error);
-  });
+// db.createTable2() 
+//   .catch(error => {
+//     console.error('Error creating table:', error);
+//   });
 
 
  //! Usar las rutas de clientes
@@ -64,7 +46,6 @@ app.use('/client', clientRoutes);
 //TODO: ME FALTAN ESTAS 2
 app.use('/project', projectRoutes);
 app.use('/taskentry', taskentryRoutes);
-
 
 
 //! Rutas Independientes de tablas sin CRUD
@@ -103,6 +84,18 @@ app.get('/category', async (req, res) => {
   });
 
 
+  
+//! Ruta de activity depende de project
+app.get('/activity', async (req, res) => {
+    try {
+      const result = await db.query('SELECT * FROM public.activity');
+      return res.json(result.rows);
+    } catch (error) {
+      console.error('Error retrieving:', error);
+      return res.status(500).json({ error: 'An error occurred while retrieving.' });
+    }
+  });
+  
 
 
 
