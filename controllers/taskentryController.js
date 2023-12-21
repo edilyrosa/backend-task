@@ -344,15 +344,15 @@ export const getTaskentryById = async (req, res) => {
 };
 
 export const createTaskentry = async (req, res) => {
-    const { contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, description } = req.body;
+    const { contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, client_id, description } = req.body;
   
     try {
       const insertQuery = `
-        INSERT INTO taskentry (contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, description)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        INSERT INTO taskentry (contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, client_id, description)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
         RETURNING *`;
-        
-      const insertValues = [contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, description];
+    
+      const insertValues = [contractor_id, date, duration, billable, project_id, product_id, activity_id, category_id, client_id, description];
   
       const insertResult = await db.query(insertQuery, insertValues);
       
