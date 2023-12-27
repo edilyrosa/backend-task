@@ -75,61 +75,54 @@ app.get('/category', async (req, res) => {
   });
   
 
-//!rutas dependientes.  
+//!Dependients paths, DELETES FROM PROJECT.  
 //! Ruta de activity depende de project
-app.get('/activity', async (req, res) => {
-    try {
-      const result = await db.query('SELECT * FROM public.activity');
-      return res.json(result.rows);
-    } catch (error) {
-      console.error('Error retrieving:', error);
-      return res.status(500).json({ error: 'An error occurred while retrieving.' });
-    }
-  });
+// app.get('/activity', async (req, res) => {
+//     try {
+//       const result = await db.query('SELECT * FROM public.activity');
+//       return res.json(result.rows);
+//     } catch (error) {
+//       console.error('Error retrieving:', error);
+//       return res.status(500).json({ error: 'An error occurred while retrieving.' });
+//     }
+//   });
   
-
-
-
-
-//! Ruta de projectproduct depende de 2
-app.get('/projectproduct', async (req, res) => {
-    try {
-      const result = await db.query('SELECT * FROM public.projectproduct');
-      return res.json(result.rows);
-    } catch (error) {
-      console.error('Error retrieving:', error);
-      return res.status(500).json({ error: 'An error occurred while retrieving.' });
-    }
-  });
+// ! Ruta de projectproduct depende de 2
+// app.get('/projectproduct', async (req, res) => {
+//     try {
+//       const result = await db.query('SELECT * FROM public.projectproduct');
+//       return res.json(result.rows);
+//     } catch (error) {
+//       console.error('Error retrieving:', error);
+//       return res.status(500).json({ error: 'An error occurred while retrieving.' });
+//     }
+//   });
   
-  //! Ruta de activitycategory depende de 2
-  app.get('/activitycategory', async (req, res) => {
-    try {
-      const result = await db.query('SELECT * FROM public.activitycategory');
-      return res.json(result.rows);
-    } catch (error) {
-      console.error('Error retrieving:', error);
-      return res.status(500).json({ error: 'An error occurred while retrieving.' });
-    }
-  });
+//   ! Ruta de activitycategory depende de 2
+//   app.get('/activitycategory', async (req, res) => {
+//     try {
+//       const result = await db.query('SELECT * FROM public.activitycategory');
+//       return res.json(result.rows);
+//     } catch (error) {
+//       console.error('Error retrieving:', error);
+//       return res.status(500).json({ error: 'An error occurred while retrieving.' });
+//     }
+//   });
   
   
-  //! Ruta para ver los resultados de consultaTable
-  app.get('/list-tables', async (req, res) => {
-    try {
-      const result = await db.consultaTable();
-      return res.json(result); // Enviar los resultados al navegador en formato JSON
-    } catch (error) {
-      console.error('Error querying tables:', error);
-      return res.status(500).json({ error: 'An error occurred while querying the tables.' });
-    }
-  });
+//   ! Ruta para ver los resultados de consultaTable
+//   app.get('/list-tables', async (req, res) => {
+//     try {
+//       const result = await db.consultaTable();
+//       return res.json(result); // Enviar los resultados al navegador en formato JSON
+//     } catch (error) {
+//       console.error('Error querying tables:', error);
+//       return res.status(500).json({ error: 'An error occurred while querying the tables.' });
+//     }
+//   });
   
   
   
-
-
-
 
 
 //!  INSERTS, se estas replicando al doble
@@ -157,10 +150,11 @@ app.get('/projectproduct', async (req, res) => {
 
 //! insert of dependient tables.
 
-  db.insertActivities()
-  .catch(error => {
-    console.error('Error insert activities:', error);
-  });
+//?DELETE FROM PROJECT
+  // db.insertActivities()
+  // .catch(error => {
+  //   console.error('Error insert activities:', error);
+  // });
 
 
 //todo
