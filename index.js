@@ -185,7 +185,7 @@ app.get('/category', async (req, res) => {
 
 
 // db.modifyDurationColumnType() 
-// db.modifyTaskEntryTable()
+db.modifyTaskEntryTable()
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

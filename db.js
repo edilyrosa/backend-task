@@ -476,13 +476,18 @@ const modifyTaskEntryTableQuery = `
   ALTER COLUMN project_id DROP NOT NULL;
 `;
 
+const dropActivityColumnQuery = `
+  ALTER TABLE public.taskentry
+  DROP COLUMN IF EXISTS activity_id;
+`;
+
 const modifyTaskEntryTable = async () => {
   try {
     // Eliminar la columna client_id
-    await pool.query(dropClientIDColumnQuery);
+    await pool.query(dropActivityColumnQuery);
     
     // Modificar la estructura de la tabla para permitir valores nulos en project_id
-    await pool.query(modifyTaskEntryTableQuery);
+    //? await pool.query(modifyTaskEntryTableQuery);
 
     console.log('Table taskentry modified successfully');
   } catch (error) {
@@ -506,7 +511,7 @@ export default {
   //insertProjectProducts,
   //insertTaskEntries,
   // modifyDurationColumnType,
-  // modifyTaskEntryTable, 
+  modifyTaskEntryTable, 
   dropTable
 };
 
