@@ -78,7 +78,6 @@ CREATE TABLE IF NOT EXISTS public.activity
 `;
 
 
-
 //!Dependent combitate tables:
 const createActivityCategoryTableQuery = `
 CREATE TABLE IF NOT EXISTS public.activitycategory
@@ -147,7 +146,6 @@ const consultaTable = async () => {
 };
 
 
-//!OJITO: 
 //READY INDEPENDENT: CLIENT, CATEGRY, PRODUCT, CONTRACTOR
 //READY DEPENDENT: PROJECT, ACTIVITY
 //READY DEPENDENT COMBINATES: ACTIVITY-CATEGORY, PROJECT-PRODUCT
@@ -163,7 +161,8 @@ const consultaTable = async () => {
 
 
 
-//!INSERT DATA TO INDEPENDENT TABLE
+//!INSERTSSS !!
+//DATA TO INDEPENDENT TABLE
 // const insertCategoryQuery = `
 // INSERT INTO public.category (description, active)
 // VALUES ($1, $2)
@@ -502,12 +501,12 @@ export default {
 
 
   //insertProjects,
-  //insertActivities,
+  insertActivities,
   //insertActivityCategories,
   //insertProjectProducts,
   //insertTaskEntries,
-  modifyDurationColumnType,
-  modifyTaskEntryTable, 
+  // modifyDurationColumnType,
+  // modifyTaskEntryTable, 
   dropTable
 };
 
