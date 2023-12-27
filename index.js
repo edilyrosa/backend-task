@@ -163,9 +163,6 @@ app.get('/projectproduct', async (req, res) => {
   });
 
 
-
-
-
 //todo
 // db.insertRgisters()
 // .catch(error => {
@@ -193,8 +190,8 @@ app.get('/projectproduct', async (req, res) => {
 //   });
 
 
-db.modifyDurationColumnType() 
-db.modifyTaskEntryTable()
+// db.modifyDurationColumnType() 
+// db.modifyTaskEntryTable()
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
